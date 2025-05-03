@@ -17,10 +17,11 @@ public class App {
         try {
             session.beginTransaction();
 
-            Person person = session.get(Person.class, 1);
-            System.out.println(person.getName() + " " + person.getAge());
+            Person person = new Person("Bob", 85);
+            session.save(person);
 
             session.getTransaction().commit();
+            System.out.println(person.getId());
         } finally {
             sessionFactory.close();
         }
