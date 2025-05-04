@@ -5,6 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) {
         Configuration configuration = new Configuration().addAnnotatedClass(Person.class);
@@ -15,17 +18,19 @@ public class App {
         try {
             session.beginTransaction();
 
-            //create
-            Person person = new Person("Bob", 85);
-            session.save(person);
-            //update
-            Person person2 = session.get(Person.class, 2);
-            person2.setName("Changed Name");
-            //delete
-            session.delete(person);
+            //update, read, delete
+            session.createQuery("update Person set name = 'newName' where age = 23").executeUpdate();
+            List<Person> personByAge = session.createQuery("from Person where age > 55").getResultList();
+            for(Person person: personByAge) {
+                System.out.println(person);
+            }
+            List<Person> personByName = session.createQuery("from Person where name like 'W%'").getResultList();
+            for(Person person: personByName) {
+                System.out.println(person);
+            }
+            session.createQuery("delete Person where age > 84").executeUpdate();
 
             session.getTransaction().commit();
-            System.out.println(person.getId());
         } finally {
             sessionFactory.close();
         }
