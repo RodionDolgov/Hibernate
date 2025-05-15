@@ -1,0 +1,10 @@
+insert into person (name,age) values ('Tom', 35);
+insert into person (name,age) values ('Bob', 23);
+insert into person (name,age) values ('Alice', 57);
+
+insert into item (person_id, name) values (1, 'Book');
+insert into item (person_id, name) values (1, 'TV');
+insert into item (person_id, name) values (2, 'PS5');
+insert into item (person_id, name) values (3, 'Vacuum cleaner');
+insert into item (person_id, name) values (3, 'Washing Machine');
+insert into item (person_id, name) values (3, 'Dishwasher');
