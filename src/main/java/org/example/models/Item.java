@@ -18,14 +18,6 @@ public class Item {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     Person owner;
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "itemName='" + itemName + '\'' +
-                ", owner=" + owner +
-                '}';
-    }
-
     public Item(String itemName) {
         this.itemName = itemName;
     }
@@ -55,5 +47,13 @@ public class Item {
 
     public void setOwner(Person owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemName='" + itemName + '\'' +
+                ", owner=" + owner +
+                '}';
     }
 }
